@@ -274,8 +274,9 @@ class StockTradingEnv:
         df["daily_return"] = df[value_col_name].pct_change(1)
         df["date"] = pd.to_datetime(df["date"])
         df.set_index("date", inplace=True, drop=True)
-        df.index = df.index.tz_localize("UTC")
-        return pd.Series(df["single-stock-baseline"], index=df.index)
+        #df.index = df.index.tz_localize("UTC")
+        #return pd.Series(df["single-stock-baseline"], index=df.index)
+        return pd.Series(df["daily_return"], index=df.index)
     
     def backtest_plot(self, account_value, baseline_start, baseline_end, baseline_ticker="^DJI"):
         df = deepcopy(account_value)
